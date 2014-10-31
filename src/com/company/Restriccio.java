@@ -6,13 +6,12 @@ import java.util.Vector;
 /**
  * Created by xavivaio on 24/10/2014.
  */
-public class Restriccio {
-
+public abstract class Restriccio {
     Vector dies;
 
-    public Restriccio(Vector dies){
-        dies = new Vector();
+    //No te constructor pq mai crearem un objecte d'aquest tipus
+
+    public void write_info(){
 
     }
-
 }

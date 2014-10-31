@@ -1,6 +1,8 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Created by xavivaio on 24/10/2014.
@@ -9,7 +11,7 @@ public class Doctor {
     private String nom;
     private String dni;
     private int sou;
-    private List<Restriccio> restriccions;
+    private List restriccions;
 
     public Doctor(){
         nom = null;
@@ -21,18 +23,26 @@ public class Doctor {
         this.nom = nom;
         this.dni = dni;
         this.sou = sou;
+        restriccions = new ArrayList();
     }
 
-    public void add_restriccio(List<Integer> dies, int dies_a_treballar) {
+    public boolean add_restriccio(Vector dies, int dies_a_treballar) {
 
-        Restriccio restriccio = new Restriccio(List<Integer> dies, int dies_a_treballar);
-        restriccions.add(dia, mes);
+        //Potser sobra boolea, no esta controlat
+
+        boolean b;
+        if (dies_a_treballar == 0){
+            b = restriccions.add(new ResAbsoluta(dies));
+        } else {
+            b = restriccions.add(new ResRelativa(dies, dies_a_treballar));
+        }
+        return b;
     }
 
     public String get_dni() {return dni;}
     public int get_sou() {return sou;}
     public String get_nom() {return nom;}
-    public Restriccio get_restriccions() {return restriccions;}
+    public List get_restriccions() {return restriccions;}
 
     public void write_info(){
         System.out.print(nom + "\n");
