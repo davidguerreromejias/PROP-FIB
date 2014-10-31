@@ -1,14 +1,20 @@
-package com.company;
+package com.company.Drivers;
 
-import java.util.List;
+import com.company.Doctor;
+import com.company.Stubs.StubDoctor;
+
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
+import java.util.Vector;
 
-public class Main {
-    private List<Doctor> doctors;
-    private Calendari calendari;
+/**
+ * Created by xavivaio on 31/10/2014.
+ */
+public class DriverDoctor {
 
-    public static void main(String[] args) {
-	// write your code here
+    private Doctor d;
+
+    public DriverDoctor() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Tria que vols fer entre les seguents opcions:\n");
         System.out.print("A) Afegir un doctor stub\n");
@@ -18,6 +24,7 @@ public class Main {
         System.out.print("E) Sortir\n");
         String choice;
         choice = sc.next();
+
         while (!choice.equals("E")) {
             if (choice.equals("A")) {
                 d = new Doctor();
@@ -25,7 +32,19 @@ public class Main {
             } else if (choice.equals("B")) {
                 d = new Doctor();
             } else if (choice.equals("C")) {
-                d.set_restriccio(StubDoctor.dia, StubDoctor.mes);
+
+                Vector<SimpleDateFormat> dateFormats = new Vector<SimpleDateFormat>();
+                dateFormats.add(new SimpleDateFormat("31/11/2014"));
+                dateFormats.add(new SimpleDateFormat("01/12/2014"));
+                dateFormats.add(new SimpleDateFormat("02/12/2014"));
+                dateFormats.add(new SimpleDateFormat("03/12/2014"));
+                dateFormats.add(new SimpleDateFormat("04/12/2014"));
+
+                Scanner sc2 = new Scanner(System.in);
+                System.out.print("Escriu R per relativa o A per absoluta" + "\n");
+                String resposta = sc2.next();
+                if (resposta.equals("A")) d.add_restriccio(dateFormats, 0);
+                else d.add_restriccio(dateFormats, 3);
             } else if (choice.equals("D")) {
                 if (d.get_sou() != -1) {
                     d.write_info();

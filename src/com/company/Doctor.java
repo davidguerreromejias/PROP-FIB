@@ -1,6 +1,8 @@
 package com.company;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
@@ -11,7 +13,7 @@ public class Doctor {
     private String nom;
     private String dni;
     private int sou;
-    private List restriccions;
+    private List<Restriccio> restriccions;
 
     public Doctor(){
         nom = null;
@@ -23,20 +25,15 @@ public class Doctor {
         this.nom = nom;
         this.dni = dni;
         this.sou = sou;
-        restriccions = new ArrayList();
+        restriccions = new ArrayList<Restriccio>();
     }
 
-    public boolean add_restriccio(Vector dies, int dies_a_treballar) {
-
-        //Potser sobra boolea, no esta controlat
-
-        boolean b;
+    public void add_restriccio(Vector<SimpleDateFormat> dies, int dies_a_treballar) {
         if (dies_a_treballar == 0){
-            b = restriccions.add(new ResAbsoluta(dies));
+            restriccions.add(new ResAbsoluta(dies));
         } else {
-            b = restriccions.add(new ResRelativa(dies, dies_a_treballar));
+            restriccions.add(new ResRelativa(dies, dies_a_treballar));
         }
-        return b;
     }
 
     public String get_dni() {return dni;}
@@ -48,6 +45,8 @@ public class Doctor {
         System.out.print(nom + "\n");
         System.out.print(dni + "\n");
         System.out.print(sou + "\n");
-        restriccio.write_info();
+        for (Restriccio restriccio : restriccions) {
+            restriccio.write_info();
+        }
     }
 }

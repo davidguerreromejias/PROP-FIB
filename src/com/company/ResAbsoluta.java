@@ -1,5 +1,6 @@
 package com.company;
 
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Vector;
  */
 public class ResAbsoluta extends Restriccio {
 
-    public ResAbsoluta(Vector dies){
+    public ResAbsoluta(Vector<SimpleDateFormat> dies){
         this.dies = dies;
     }
 }
